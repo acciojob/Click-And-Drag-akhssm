@@ -19,39 +19,33 @@ body {
   overflow: hidden;
 }
 
-/* Scrollable container */
 .items {
-  height: 500px;
-  padding: 60px;
+  height: 400px;
   width: 90%;
   max-width: 1200px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   user-select: none;
   cursor: grab;
-  transition: transform 0.2s ease, background 0.3s ease;
-  transform: scale(0.98);
-  position: relative;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(6px);
   font-size: 0;
-  perspective: 600px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* Active drag state */
 .items.active {
   background: rgba(255, 255, 255, 0.25);
   cursor: grabbing;
-  transform: scale(1);
+  transform: scale(1.01);
 }
 
-/* Individual items */
 .item {
   width: 180px;
-  height: calc(100% - 40px);
+  height: 300px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -60,47 +54,18 @@ body {
   color: rgba(255, 255, 255, 0.85);
   margin: 0 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: dodgerblue;
+  transition: transform 0.3s ease;
 }
 
-/* Hover animation for depth */
 .item:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
 }
 
-/* Colors */
-.item:nth-child(9n+1) { background: dodgerblue; }
-.item:nth-child(9n+2) { background: goldenrod; }
-.item:nth-child(9n+3) { background: paleturquoise; color: #333; }
-.item:nth-child(9n+4) { background: gold; color: #333; }
-.item:nth-child(9n+5) { background: cadetblue; }
-.item:nth-child(9n+6) { background: tomato; }
-.item:nth-child(9n+7) { background: lightcoral; }
-.item:nth-child(9n+8) { background: darkslateblue; }
-.item:nth-child(9n+9) { background: rebeccapurple; }
-
-/* Subtle 3D tilt */
-.item:nth-child(even) {
-  transform: perspective(500px) rotateY(15deg);
-}
-.item:nth-child(odd) {
-  transform: perspective(500px) rotateY(-15deg);
-}
-
-/* Scrollbar styling */
 .items::-webkit-scrollbar {
   height: 10px;
 }
-.items::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-}
 .items::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 5px;
-}
-.items::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.8);
 }

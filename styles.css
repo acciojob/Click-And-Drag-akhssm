@@ -1,63 +1,39 @@
-/* Global Reset and Body Styles for the Cube Project */
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-    background-color: #f4f4f9;
-    min-height: 100vh; /* Ensures the page takes up full viewport height */
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: Arial, sans-serif;
 }
 
-h1 {
-    color: #333;
-}
-
-/* The defined area for dragging */
 .container {
-    width: 600px;
-    height: 400px;
-    background-color: #e0e0f0;
-    border: 3px dashed #6a5acd;
-    position: relative; /* Crucial for absolute positioning of cubes */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Initial grid setup */
-    grid-template-rows: repeat(2, 1fr);
-    gap: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    touch-action: none;
+  position: relative;
+  width: 600px;
+  height: 400px;
+  background-color: #ffffff;
+  border: 3px solid #000;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(2, 100px);
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Individual cube styling */
 .cube {
-    width: 100px;
-    height: 100px;
-    background-color: #ff6347;
-    border: 2px solid #cc4e3a;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: grab;
-    position: relative;
-    transition: background-color 0.2s, box-shadow 0.2s, z-index 0.2s;
-    user-select: none;
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  border-radius: 10px;
+  cursor: grab;
+  transition: box-shadow 0.2s;
 }
 
-/* Style when a cube is being dragged */
-.cube.dragging {
-    background-color: #4682b4;
-    cursor: grabbing;
-    position: absolute;
-    z-index: 1000;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    transition: none;
-}
-
-/* Important: When a cube has been dropped, it needs absolute positioning */
-.cube[style*="left"] {
-    position: absolute;
+.cube:active {
+  cursor: grabbing;
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.7);
 }

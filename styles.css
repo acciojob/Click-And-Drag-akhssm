@@ -89,7 +89,7 @@ body {
   transform: perspective(500px) rotateY(-15deg);
 }
 
-/* Scrollbar styling (for modern browsers) */
+/* Scrollbar styling */
 .items::-webkit-scrollbar {
   height: 10px;
 }

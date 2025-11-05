@@ -1,33 +1,56 @@
-const slider = document.querySelector('.items');
-let isDown = false;
-let startX;
-let scrollLeft;
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('drag-container');
+    const cubes = document.querySelectorAll('.cube');
 
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  slider.classList.add('active');
-  startX = e.pageX;
-  scrollLeft = slider.scrollLeft;
-});
+    let activeCube = null;
+    let offsetX, offsetY;
+    let containerRect;
 
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
+    const dragStart = (e) => {
+        if (e.button !== 0) return;
 
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
+        activeCube = e.target;
+        activeCube.classList.add('dragging');
+        
+        containerRect = container.getBoundingClientRect();
 
-slider.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX;
-  const walk = (x - startX) * 1.5;
-  slider.scrollLeft = scrollLeft - walk;
-});
+        offsetX = e.clientX - activeCube.getBoundingClientRect().left;
+        offsetY = e.clientY - activeCube.getBoundingClientRect().top;
+        
+        document.addEventListener('mousemove', dragMove);
+        document.addEventListener('mouseup', dragEnd);
+    };
 
-slider.addEventListener('mousedown', () => {
-  slider.scrollLeft += 100;
+    const dragMove = (e) => {
+        if (!activeCube) return;
+        
+        e.preventDefault();
+
+        let newX = e.clientX - containerRect.left - offsetX;
+        let newY = e.clientY - containerRect.top - offsetY;
+
+        const cubeWidth = activeCube.offsetWidth;
+        const cubeHeight = activeCube.offsetHeight;
+
+        newX = Math.max(0, Math.min(newX, containerRect.width - cubeWidth));
+        newY = Math.max(0, Math.min(newY, containerRect.height - cubeHeight));
+
+        activeCube.style.left = `${newX}px`;
+        activeCube.style.top = `${newY}px`;
+    };
+
+    const dragEnd = () => {
+        if (!activeCube) return;
+
+        activeCube.classList.remove('dragging');
+        
+        activeCube = null;
+
+        document.removeEventListener('mousemove', dragMove);
+        document.removeEventListener('mouseup', dragEnd);
+    };
+
+    cubes.forEach(cube => {
+        cube.addEventListener('mousedown', dragStart);
+    });
 });

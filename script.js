@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cubeWidth = activeCube.offsetWidth;
         const cubeHeight = activeCube.offsetHeight;
 
+        // Boundary constraint check
         newX = Math.max(0, Math.min(newX, containerRect.width - cubeWidth));
         newY = Math.max(0, Math.min(newY, containerRect.height - cubeHeight));
 

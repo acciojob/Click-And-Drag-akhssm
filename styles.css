@@ -1,3 +1,4 @@
+/* Global Reset and Body Styles for the Cube Project */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -5,20 +6,22 @@ body {
     align-items: center;
     margin: 20px;
     background-color: #f4f4f9;
+    min-height: 100vh; /* Ensures the page takes up full viewport height */
 }
 
 h1 {
     color: #333;
 }
 
+/* The defined area for dragging */
 .container {
     width: 600px;
     height: 400px;
     background-color: #e0e0f0;
     border: 3px dashed #6a5acd;
-    position: relative;
+    position: relative; /* Crucial for absolute positioning of cubes */
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Initial grid setup */
     grid-template-rows: repeat(2, 1fr);
     gap: 10px;
     padding: 10px;
@@ -26,6 +29,7 @@ h1 {
     touch-action: none;
 }
 
+/* Individual cube styling */
 .cube {
     width: 100px;
     height: 100px;
@@ -43,6 +47,7 @@ h1 {
     user-select: none;
 }
 
+/* Style when a cube is being dragged */
 .cube.dragging {
     background-color: #4682b4;
     cursor: grabbing;
@@ -52,6 +57,7 @@ h1 {
     transition: none;
 }
 
+/* Important: When a cube has been dropped, it needs absolute positioning */
 .cube[style*="left"] {
     position: absolute;
 }
